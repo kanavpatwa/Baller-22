@@ -7,6 +7,7 @@ class Team {
   float[] xAway = new float[5];
   float[] yAway = new float[5];
   
+  
   Team(String n, color c){
     this.name = n;
     this.jerseyColor = c;
@@ -19,6 +20,7 @@ class Team {
     for (int i = 0; i < 5; i++) {
       xHome[i] = startxPosHome[i];
       yHome[i] = startyPosHome[i];
+      strokeWeight(3);
       fill(this.jerseyColor);
       square(xHome[i], yHome[i], 30);      
   }
@@ -44,7 +46,7 @@ class Team {
         if (yHome[i] > startyPosHome[i])
             yHome[i] -= 0.3;
       }
-      
+      strokeWeight(3);
       fill(this.jerseyColor);
       square(xHome[i], yHome[i], 30);
     }
@@ -54,6 +56,7 @@ class Team {
     for (int i = 0; i < 5; i++) {
       xAway[i] = startxPosAway[i];
       yAway[i] = startyPosAway[i];
+      strokeWeight(3);
       fill(this.jerseyColor);
       square(xAway[i], yAway[i], 30);     
   }
@@ -79,7 +82,7 @@ class Team {
         if (yAway[i] > startyPosAway[i])
             yAway[i] -= 0.3;
       }
-        
+      strokeWeight(3);
       fill(this.jerseyColor);
       square(xAway[i], yAway[i], 30);
     }

@@ -29,8 +29,8 @@ void drawCourt(){
   circle(400, 400, 100);
   
   //nets
-  stroke(255, 100, 0);
-  strokeWeight(3);
+  stroke(255, 150, 0);
+  strokeWeight(5);
   circle(15, 400, 30);
   circle(785, 400, 30);
   
