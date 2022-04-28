@@ -9,8 +9,8 @@ float[] endyPosHome = {325,385,350,425,450};
 float[] endxPosAway = {725,675,525,525,725};
 float[] endyPosAway = {275,385,325,450,500};
 
-color homeColor = color(0,0,255);
-color awayColor = color(255,0,0);
+color homeColor = color(200,0,0);
+color awayColor = color(0,0,200);
 
 float xBall = 80;
 float yBall = 400;
