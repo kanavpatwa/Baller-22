@@ -23,6 +23,7 @@ class Crowd {
          jerseyColor[i][j] = this.homeTeam.jerseyColor;
        else
          jerseyColor[i][j] = this.awayTeam.jerseyColor;
+       
        fill(jerseyColor[i][j]);
        square(x,y, 25);
        y += 25;
@@ -31,9 +32,8 @@ class Crowd {
    }
   }
   
-  
   void resetCrowd() {
-    x = 0;
+   x = 0;
    for (int i = 0; i < 20; i++){
      y = 0;
      for (int j = 0; j < 8; j++){
@@ -45,9 +45,22 @@ class Crowd {
    }
   }
     
-  
   void teamScores() {
-    if (teamScored == homeTeam)
-     y += 2;
+    x = 0;
+   for (int i = 0; i < 20; i++){
+     y = 0;
+     for (int j = 0; j < 8; j++){
+       if (x <= 10 && jerseyColor[i][j] == this.homeTeam.jerseyColor)
+         fill(255);
+       else if (x >= width-10 && jerseyColor[i][j] == this.awayTeam.jerseyColor)
+         fill(255);
+       else
+         fill(jerseyColor[i][j]);
+       square(x,y, 25);
+       y += 25;
+     }
+     x += 25;
+   }
   }
+
 }
