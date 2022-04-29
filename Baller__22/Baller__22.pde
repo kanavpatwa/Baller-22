@@ -1,3 +1,5 @@
+import g4p_controls.*;
+
 
 float[] startxPosHome = {50,100,250,250,50};
 float[] startyPosHome = {275,385,325,450,500};
@@ -9,7 +11,7 @@ float[] endyPosHome = {325,385,350,425,450};
 float[] endxPosAway = {725,675,525,525,725};
 float[] endyPosAway = {275,385,325,450,500};
 
-color homeColor = color(200,0,0);
+color homeColor = color(200,0, 0);
 color awayColor = color(0,0,200);
 
 float xBall = 80;
@@ -31,6 +33,7 @@ void setup() {
   home.drawPlayersHome();
   away.drawPlayersAway();
   //noLoop();
+  createGUI();
 }
 
 void draw(){
