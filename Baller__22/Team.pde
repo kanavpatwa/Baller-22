@@ -1,7 +1,6 @@
 class Team {
   String name;
   color jerseyColor;
-  Player[] players;
   float[] xHome = new float[5];
   float[] yHome = new float[5];
   float[] xAway = new float[5];
@@ -11,10 +10,7 @@ class Team {
   Team(String n, color c){
     this.name = n;
     this.jerseyColor = c;
-    players = new Player[5];
   }
-  
-
   
   void drawPlayersHome(){
     for (int i = 0; i < 5; i++) {

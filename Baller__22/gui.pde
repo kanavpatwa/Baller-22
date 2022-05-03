@@ -62,7 +62,8 @@ public void homeColorListChanged(GDropList source, GEvent event) { //_CODE_:home
   else if (homeColorSelected.equals("WHITE"))
     homeColor = color(255);
   else
-    homeColor = color(0);    
+    homeColor = color(0);
+    
 } //_CODE_:homeColorList:337470:
 
 public void awayColorListChanged(GDropList source, GEvent event) { //_CODE_:awayColorList:908743:
@@ -81,19 +82,19 @@ public void awayColorListChanged(GDropList source, GEvent event) { //_CODE_:away
 } //_CODE_:awayColorList:908743:
 
 public void shootingSliderHomeChanged(GSlider source, GEvent event) { //_CODE_:shootingSliderHome:916886:
-  println("shootingSlider - GSlider >> GEvent." + event + " @ " + millis());
+  shootingSkillHome = shootingSliderHome.getValueF();
 } //_CODE_:shootingSliderHome:916886:
 
 public void shootingSliderAwayChange(GSlider source, GEvent event) { //_CODE_:shootingSliderAway:929142:
-  println("slider1 - GSlider >> GEvent." + event + " @ " + millis());
+  shootingSkillAway = shootingSliderAway.getValueF();
 } //_CODE_:shootingSliderAway:929142:
 
 public void blockingSliderHomeChanged(GSlider source, GEvent event) { //_CODE_:blockingSliderHome:427314:
-  println("slider1 - GSlider >> GEvent." + event + " @ " + millis());
+  blockingSkillHome = blockingSliderHome.getValueF();
 } //_CODE_:blockingSliderHome:427314:
 
 public void blockingSliderAwayChanged(GSlider source, GEvent event) { //_CODE_:blockingSliderAway:595594:
-  println("blockingSliderAway - GSlider >> GEvent." + event + " @ " + millis());
+  blockingSkillAway = blockingSliderAway.getValueF();
 } //_CODE_:blockingSliderAway:595594:
 
 
@@ -105,7 +106,7 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  userInterface = GWindow.getWindow(this, "Window title", 0, 0, 400, 400, JAVA2D);
+  userInterface = GWindow.getWindow(this, "Window title", 150, 350, 400, 400, JAVA2D);
   userInterface.noLoop();
   userInterface.setActionOnClose(G4P.KEEP_OPEN);
   userInterface.addDrawHandler(this, "win_draw1");
@@ -188,10 +189,10 @@ public void createGUI(){
   blockingSliderAway = new GSlider(userInterface, 213, 275, 175, 50, 10.0);
   blockingSliderAway.setShowValue(true);
   blockingSliderAway.setShowLimits(true);
-  blockingSliderAway.setLimits(0.0, 0.0, 90.0);
+  blockingSliderAway.setLimits(0, 0, 90);
   blockingSliderAway.setNbrTicks(10);
   blockingSliderAway.setStickToTicks(true);
-  blockingSliderAway.setNumberFormat(G4P.DECIMAL, 2);
+  blockingSliderAway.setNumberFormat(G4P.INTEGER, 0);
   blockingSliderAway.setOpaque(false);
   blockingSliderAway.addEventHandler(this, "blockingSliderAwayChanged");
   userInterface.loop();

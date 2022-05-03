@@ -40,23 +40,26 @@ void setup() {
 }
 
 void draw(){
+  //c.resetCrowd();
   c.createCrowd();
   drawCourt();
-  scoreBoard();
   
   drawBall();
+  
   home.movePlayersHome();
   away.movePlayersAway();
+  scoreBoard();
+  
+
   
 }
 
 void reset() {
-  //c.initialCrowd();
+  c.createCrowd();
   home.drawPlayersHome();
   away.drawPlayersAway();
   xBall = 80;
   ballDirection = true;
   homeScore = 0;
   awayScore = 0;
-  
 }
