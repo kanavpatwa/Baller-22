@@ -21,7 +21,7 @@ class Team {
       xHome[i] = startxPosHome[i];
       yHome[i] = startyPosHome[i];
       strokeWeight(3);
-      fill(this.jerseyColor);
+      fill(homeColor);
       square(xHome[i], yHome[i], 30);      
   }
  }
@@ -47,7 +47,7 @@ class Team {
             yHome[i] -= 0.3;
       }
       strokeWeight(3);
-      fill(this.jerseyColor);
+      fill(homeColor);
       square(xHome[i], yHome[i], 30);
     }
   }
@@ -57,7 +57,7 @@ class Team {
       xAway[i] = startxPosAway[i];
       yAway[i] = startyPosAway[i];
       strokeWeight(3);
-      fill(this.jerseyColor);
+      fill(awayColor);
       square(xAway[i], yAway[i], 30);     
   }
  }
@@ -83,7 +83,7 @@ class Team {
             yAway[i] -= 0.3;
       }
       strokeWeight(3);
-      fill(this.jerseyColor);
+      fill(awayColor);
       square(xAway[i], yAway[i], 30);
     }
   }

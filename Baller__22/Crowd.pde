@@ -13,16 +13,16 @@ class Crowd {
     jerseyColor = new color[20][8];
   }
   
-  void initialCrowd() {
+  void createCrowd() {
    x = 0;
    for (int i = 0; i < 20; i++){
      y = 0;
      for (int j = 0; j < 8; j++){
        int rand = round(random(1,2));
        if (rand == 1)
-         jerseyColor[i][j] = this.homeTeam.jerseyColor;
+         jerseyColor[i][j] = homeColor;
        else
-         jerseyColor[i][j] = this.awayTeam.jerseyColor;
+         jerseyColor[i][j] = awayColor;
        
        fill(jerseyColor[i][j]);
        square(x,y, 25);

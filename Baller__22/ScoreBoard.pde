@@ -7,14 +7,15 @@ void scoreBoard(){
   
   textSize(35);
   fill(255);
-  text("HOME", 525, 75);
-  text("AWAY", 675, 75);
+  //textAlign(LEFT);
+  text("HOME", 575, 75);
+  text("AWAY", 725, 75);
   
   if (xBall <= 10)
     homeScore += 2;
   if (xBall >= width-10)
     awayScore += 2;
       
-  text(homeScore, 545, 150);
-  text(awayScore, 685, 150);
+  text(homeScore, 575, 150);
+  text(awayScore, 725, 150);
 }

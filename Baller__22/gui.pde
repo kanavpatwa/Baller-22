@@ -19,16 +19,82 @@ synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:userI
 } //_CODE_:userInterface:845635:
 
 public void pauseButtonClicked(GButton source, GEvent event) { //_CODE_:pauseButton:640952:
-  println("pauseButton - GButton >> GEvent." + event + " @ " + millis());
+  paused = !paused;
+  if (paused) {
+    pauseButton.setText("Resume");
+    noLoop();
+  }
+  else {
+    pauseButton.setText("Pause");
+    loop();
+  }
 } //_CODE_:pauseButton:640952:
 
 public void resetButtonClicked(GButton source, GEvent event) { //_CODE_:resetButton:838627:
-  println("button2 - GButton >> GEvent." + event + " @ " + millis());
+  reset();
 } //_CODE_:resetButton:838627:
 
 public void ffButtonClicked(GButton source, GEvent event) { //_CODE_:fastForwardButton:742662:
-  println("button3 - GButton >> GEvent." + event + " @ " + millis());
+  ff = !ff;
+  if (ff)
+    fastForwardButton.setText("Normal Speed");
+  else
+    fastForwardButton.setText("Fast Forward");
 } //_CODE_:fastForwardButton:742662:
+
+public void homeTextTyped(GTextField source, GEvent event) { //_CODE_:homeText:765364:
+  homeName = homeText.getText();
+} //_CODE_:homeText:765364:
+
+public void awayTextTyped(GTextField source, GEvent event) { //_CODE_:awayText:558105:
+  awayName = awayText.getText();
+} //_CODE_:awayText:558105:
+
+public void homeColorListChanged(GDropList source, GEvent event) { //_CODE_:homeColorList:337470:
+  String homeColorSelected = homeColorList.getSelectedText();
+  //println(homeColorSelected);
+  if (homeColorSelected.equals("RED"))
+    homeColor = color(200, 0, 0);
+  else if (homeColorSelected.equals("BLUE"))
+    homeColor = color(0,0,200);
+  else if (homeColorSelected.equals("GREEN"))
+    homeColor = color(0,100,0);
+  else if (homeColorSelected.equals("WHITE"))
+    homeColor = color(255);
+  else
+    homeColor = color(0);    
+} //_CODE_:homeColorList:337470:
+
+public void awayColorListChanged(GDropList source, GEvent event) { //_CODE_:awayColorList:908743:
+  String awayColorSelected = awayColorList.getSelectedText();
+  //println(homeColorSelected);
+  if (awayColorSelected.equals("RED"))
+    awayColor = color(200, 0, 0);
+  else if (awayColorSelected.equals("BLUE"))
+    awayColor = color(0,0,200);
+  else if (awayColorSelected.equals("GREEN"))
+    awayColor = color(0,100,0);
+  else if (awayColorSelected.equals("WHITE"))
+    awayColor = color(255);
+  else
+    awayColor = color(0);
+} //_CODE_:awayColorList:908743:
+
+public void shootingSliderHomeChanged(GSlider source, GEvent event) { //_CODE_:shootingSliderHome:916886:
+  println("shootingSlider - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:shootingSliderHome:916886:
+
+public void shootingSliderAwayChange(GSlider source, GEvent event) { //_CODE_:shootingSliderAway:929142:
+  println("slider1 - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:shootingSliderAway:929142:
+
+public void blockingSliderHomeChanged(GSlider source, GEvent event) { //_CODE_:blockingSliderHome:427314:
+  println("slider1 - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:blockingSliderHome:427314:
+
+public void blockingSliderAwayChanged(GSlider source, GEvent event) { //_CODE_:blockingSliderAway:595594:
+  println("blockingSliderAway - GSlider >> GEvent." + event + " @ " + millis());
+} //_CODE_:blockingSliderAway:595594:
 
 
 
@@ -39,7 +105,7 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  userInterface = GWindow.getWindow(this, "Window title", 0, 0, 400, 800, JAVA2D);
+  userInterface = GWindow.getWindow(this, "Window title", 0, 0, 400, 400, JAVA2D);
   userInterface.noLoop();
   userInterface.setActionOnClose(G4P.KEEP_OPEN);
   userInterface.addDrawHandler(this, "win_draw1");
@@ -52,18 +118,82 @@ public void createGUI(){
   fastForwardButton = new GButton(userInterface, 285, 20, 80, 30);
   fastForwardButton.setText("Fast Forward");
   fastForwardButton.addEventHandler(this, "ffButtonClicked");
-  homeTeamLabel = new GLabel(userInterface, 88, 78, 80, 20);
+  homeTeamLabel = new GLabel(userInterface, 75, 78, 80, 20);
   homeTeamLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   homeTeamLabel.setText("Home Team");
   homeTeamLabel.setOpaque(false);
-  awayTeamLabel = new GLabel(userInterface, 230, 78, 80, 20);
+  awayTeamLabel = new GLabel(userInterface, 275, 78, 80, 20);
   awayTeamLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   awayTeamLabel.setText("Away Team");
   awayTeamLabel.setOpaque(false);
-  label1 = new GLabel(userInterface, 200, 62, 8, 286);
+  label1 = new GLabel(userInterface, 200, 75, 10, 475);
   label1.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
-  label1.setText("| | | | | | | | | | | | | | | | | | |");
+  label1.setText("| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |");
   label1.setOpaque(false);
+  homeText = new GTextField(userInterface, 11, 107, 120, 20, G4P.SCROLLBARS_NONE);
+  homeText.setText("Toronto Raptors");
+  homeText.setPromptText("Enter Team Name:");
+  homeText.setOpaque(true);
+  homeText.addEventHandler(this, "homeTextTyped");
+  awayText = new GTextField(userInterface, 216, 108, 120, 20, G4P.SCROLLBARS_NONE);
+  awayText.setText("76ers");
+  awayText.setPromptText("Enter Team Name:");
+  awayText.setOpaque(true);
+  awayText.addEventHandler(this, "awayTextTyped");
+  homeColorList = new GDropList(userInterface, 139, 108, 50, 120, 5, 10);
+  homeColorList.setItems(loadStrings("list_337470"), 0);
+  homeColorList.addEventHandler(this, "homeColorListChanged");
+  awayColorList = new GDropList(userInterface, 342, 107, 50, 120, 5, 10);
+  awayColorList.setItems(loadStrings("list_908743"), 1);
+  awayColorList.addEventHandler(this, "awayColorListChanged");
+  shootingSliderHome = new GSlider(userInterface, 12, 175, 175, 50, 10.0);
+  shootingSliderHome.setShowValue(true);
+  shootingSliderHome.setShowLimits(true);
+  shootingSliderHome.setLimits(100, 0, 100);
+  shootingSliderHome.setNbrTicks(11);
+  shootingSliderHome.setStickToTicks(true);
+  shootingSliderHome.setNumberFormat(G4P.INTEGER, 0);
+  shootingSliderHome.setOpaque(false);
+  shootingSliderHome.addEventHandler(this, "shootingSliderHomeChanged");
+  shootingHomeLabel = new GLabel(userInterface, 0, 150, 80, 20);
+  shootingHomeLabel.setText("Shooting Skill");
+  shootingHomeLabel.setOpaque(false);
+  blockingHomeLabel = new GLabel(userInterface, 0, 250, 80, 20);
+  blockingHomeLabel.setText("Blocking Skill");
+  blockingHomeLabel.setOpaque(false);
+  shootingAwayLabel = new GLabel(userInterface, 210, 150, 80, 20);
+  shootingAwayLabel.setText("Shooting Skill");
+  shootingAwayLabel.setOpaque(false);
+  blockingAwayLabel = new GLabel(userInterface, 210, 240, 80, 20);
+  blockingAwayLabel.setText("Blocking Skill");
+  blockingAwayLabel.setOpaque(false);
+  shootingSliderAway = new GSlider(userInterface, 212, 175, 175, 50, 10.0);
+  shootingSliderAway.setShowValue(true);
+  shootingSliderAway.setShowLimits(true);
+  shootingSliderAway.setLimits(100, 0, 100);
+  shootingSliderAway.setNbrTicks(11);
+  shootingSliderAway.setStickToTicks(true);
+  shootingSliderAway.setNumberFormat(G4P.INTEGER, 0);
+  shootingSliderAway.setOpaque(false);
+  shootingSliderAway.addEventHandler(this, "shootingSliderAwayChange");
+  blockingSliderHome = new GSlider(userInterface, 12, 275, 175, 50, 10.0);
+  blockingSliderHome.setShowValue(true);
+  blockingSliderHome.setShowLimits(true);
+  blockingSliderHome.setLimits(0, 0, 90);
+  blockingSliderHome.setNbrTicks(10);
+  blockingSliderHome.setStickToTicks(true);
+  blockingSliderHome.setNumberFormat(G4P.INTEGER, 0);
+  blockingSliderHome.setOpaque(false);
+  blockingSliderHome.addEventHandler(this, "blockingSliderHomeChanged");
+  blockingSliderAway = new GSlider(userInterface, 213, 275, 175, 50, 10.0);
+  blockingSliderAway.setShowValue(true);
+  blockingSliderAway.setShowLimits(true);
+  blockingSliderAway.setLimits(0.0, 0.0, 90.0);
+  blockingSliderAway.setNbrTicks(10);
+  blockingSliderAway.setStickToTicks(true);
+  blockingSliderAway.setNumberFormat(G4P.DECIMAL, 2);
+  blockingSliderAway.setOpaque(false);
+  blockingSliderAway.addEventHandler(this, "blockingSliderAwayChanged");
   userInterface.loop();
 }
 
@@ -76,3 +206,15 @@ GButton fastForwardButton;
 GLabel homeTeamLabel; 
 GLabel awayTeamLabel; 
 GLabel label1; 
+GTextField homeText; 
+GTextField awayText; 
+GDropList homeColorList; 
+GDropList awayColorList; 
+GSlider shootingSliderHome; 
+GLabel shootingHomeLabel; 
+GLabel blockingHomeLabel; 
+GLabel shootingAwayLabel; 
+GLabel blockingAwayLabel; 
+GSlider shootingSliderAway; 
+GSlider blockingSliderHome; 
+GSlider blockingSliderAway; 

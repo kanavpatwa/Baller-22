@@ -37,4 +37,13 @@ void drawCourt(){
   stroke(0);
   strokeWeight(2);
   
+  //Team Name
+  textAlign(CENTER);
+  PFont font = loadFont("CopperplateGothic-Light-48.vlw");
+  textFont(font);
+  textSize(45);
+  text(homeName, 400, 240);
+  fill(awayColor);
+  text(awayName, 400, 590);
+  
 }
