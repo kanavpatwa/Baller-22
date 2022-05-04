@@ -34,14 +34,6 @@ public void resetButtonClicked(GButton source, GEvent event) { //_CODE_:resetBut
   reset();
 } //_CODE_:resetButton:838627:
 
-public void ffButtonClicked(GButton source, GEvent event) { //_CODE_:fastForwardButton:742662:
-  ff = !ff;
-  if (ff)
-    fastForwardButton.setText("Normal Speed");
-  else
-    fastForwardButton.setText("Fast Forward");
-} //_CODE_:fastForwardButton:742662:
-
 public void homeTextTyped(GTextField source, GEvent event) { //_CODE_:homeText:765364:
   homeName = homeText.getText();
 } //_CODE_:homeText:765364:
@@ -110,24 +102,21 @@ public void createGUI(){
   userInterface.noLoop();
   userInterface.setActionOnClose(G4P.KEEP_OPEN);
   userInterface.addDrawHandler(this, "win_draw1");
-  pauseButton = new GButton(userInterface, 28, 19, 80, 30);
+  pauseButton = new GButton(userInterface, 60, 19, 80, 30);
   pauseButton.setText("Pause");
   pauseButton.addEventHandler(this, "pauseButtonClicked");
-  resetButton = new GButton(userInterface, 160, 19, 80, 30);
+  resetButton = new GButton(userInterface, 260, 20, 80, 30);
   resetButton.setText("Reset");
   resetButton.addEventHandler(this, "resetButtonClicked");
-  fastForwardButton = new GButton(userInterface, 285, 20, 80, 30);
-  fastForwardButton.setText("Fast Forward");
-  fastForwardButton.addEventHandler(this, "ffButtonClicked");
-  homeTeamLabel = new GLabel(userInterface, 75, 78, 80, 20);
+  homeTeamLabel = new GLabel(userInterface, 60, 78, 80, 20);
   homeTeamLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   homeTeamLabel.setText("Home Team");
   homeTeamLabel.setOpaque(false);
-  awayTeamLabel = new GLabel(userInterface, 275, 78, 80, 20);
+  awayTeamLabel = new GLabel(userInterface, 260, 78, 80, 20);
   awayTeamLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   awayTeamLabel.setText("Away Team");
   awayTeamLabel.setOpaque(false);
-  label1 = new GLabel(userInterface, 200, 75, 10, 475);
+  label1 = new GLabel(userInterface, 200, 50, 10, 475);
   label1.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   label1.setText("| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |");
   label1.setOpaque(false);
@@ -195,6 +184,10 @@ public void createGUI(){
   blockingSliderAway.setNumberFormat(G4P.INTEGER, 0);
   blockingSliderAway.setOpaque(false);
   blockingSliderAway.addEventHandler(this, "blockingSliderAwayChanged");
+  label2 = new GLabel(userInterface, 0, 50, 400, 20);
+  label2.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  label2.setText("--------------------------------------------------------------------------------------------------");
+  label2.setOpaque(false);
   userInterface.loop();
 }
 
@@ -203,7 +196,6 @@ public void createGUI(){
 GWindow userInterface;
 GButton pauseButton; 
 GButton resetButton; 
-GButton fastForwardButton; 
 GLabel homeTeamLabel; 
 GLabel awayTeamLabel; 
 GLabel label1; 
@@ -219,3 +211,4 @@ GLabel blockingAwayLabel;
 GSlider shootingSliderAway; 
 GSlider blockingSliderHome; 
 GSlider blockingSliderAway; 
+GLabel label2; 
