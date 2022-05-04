@@ -4,8 +4,6 @@ float shootingSkillAway = 100;
 float blockingSkillAway = 0;
 boolean pointScored;
 
-int randPlayer = int(random(0, 6));
-
 void probScoringHome() {
   float probScore = (shootingSkillHome - blockingSkillAway) / 100;
   float random = random(1);

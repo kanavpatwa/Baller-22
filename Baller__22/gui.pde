@@ -22,10 +22,12 @@ public void pauseButtonClicked(GButton source, GEvent event) { //_CODE_:pauseBut
   paused = !paused;
   if (paused) {
     pauseButton.setText("Resume");
+    pauseButton.setLocalColorScheme(GCScheme.GREEN_SCHEME);
     noLoop();
   }
   else {
     pauseButton.setText("Pause");
+    pauseButton.setLocalColorScheme(GCScheme.RED_SCHEME);
     loop();
   }
 } //_CODE_:pauseButton:640952:
@@ -104,9 +106,11 @@ public void createGUI(){
   userInterface.addDrawHandler(this, "win_draw1");
   pauseButton = new GButton(userInterface, 60, 19, 80, 30);
   pauseButton.setText("Pause");
+  pauseButton.setLocalColorScheme(GCScheme.RED_SCHEME);
   pauseButton.addEventHandler(this, "pauseButtonClicked");
   resetButton = new GButton(userInterface, 260, 20, 80, 30);
   resetButton.setText("Reset");
+  resetButton.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   resetButton.addEventHandler(this, "resetButtonClicked");
   homeTeamLabel = new GLabel(userInterface, 60, 78, 80, 20);
   homeTeamLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
@@ -132,9 +136,11 @@ public void createGUI(){
   awayText.addEventHandler(this, "awayTextTyped");
   homeColorList = new GDropList(userInterface, 139, 108, 50, 120, 5, 10);
   homeColorList.setItems(loadStrings("list_337470"), 0);
+  homeColorList.setLocalColorScheme(GCScheme.RED_SCHEME);
   homeColorList.addEventHandler(this, "homeColorListChanged");
   awayColorList = new GDropList(userInterface, 342, 107, 50, 120, 5, 10);
   awayColorList.setItems(loadStrings("list_908743"), 1);
+  awayColorList.setLocalColorScheme(GCScheme.RED_SCHEME);
   awayColorList.addEventHandler(this, "awayColorListChanged");
   shootingSliderHome = new GSlider(userInterface, 12, 175, 175, 50, 10.0);
   shootingSliderHome.setShowValue(true);
@@ -143,6 +149,7 @@ public void createGUI(){
   shootingSliderHome.setNbrTicks(11);
   shootingSliderHome.setStickToTicks(true);
   shootingSliderHome.setNumberFormat(G4P.INTEGER, 0);
+  shootingSliderHome.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   shootingSliderHome.setOpaque(false);
   shootingSliderHome.addEventHandler(this, "shootingSliderHomeChanged");
   shootingHomeLabel = new GLabel(userInterface, 0, 150, 80, 20);
@@ -164,6 +171,7 @@ public void createGUI(){
   shootingSliderAway.setNbrTicks(11);
   shootingSliderAway.setStickToTicks(true);
   shootingSliderAway.setNumberFormat(G4P.INTEGER, 0);
+  shootingSliderAway.setLocalColorScheme(GCScheme.PURPLE_SCHEME);
   shootingSliderAway.setOpaque(false);
   shootingSliderAway.addEventHandler(this, "shootingSliderAwayChange");
   blockingSliderHome = new GSlider(userInterface, 12, 275, 175, 50, 10.0);
@@ -173,6 +181,7 @@ public void createGUI(){
   blockingSliderHome.setNbrTicks(10);
   blockingSliderHome.setStickToTicks(true);
   blockingSliderHome.setNumberFormat(G4P.INTEGER, 0);
+  blockingSliderHome.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   blockingSliderHome.setOpaque(false);
   blockingSliderHome.addEventHandler(this, "blockingSliderHomeChanged");
   blockingSliderAway = new GSlider(userInterface, 213, 275, 175, 50, 10.0);
@@ -182,6 +191,7 @@ public void createGUI(){
   blockingSliderAway.setNbrTicks(10);
   blockingSliderAway.setStickToTicks(true);
   blockingSliderAway.setNumberFormat(G4P.INTEGER, 0);
+  blockingSliderAway.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   blockingSliderAway.setOpaque(false);
   blockingSliderAway.addEventHandler(this, "blockingSliderAwayChanged");
   label2 = new GLabel(userInterface, 0, 50, 400, 20);
